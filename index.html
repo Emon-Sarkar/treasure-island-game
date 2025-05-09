@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Treasure Island Game</title>
+    <!-- Include PyScript -->
+    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+        .output {
+            margin-top: 20px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            background: #fff;
+            min-height: 100px;
+        }
+        input {
+            margin: 10px;
+            padding: 10px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Treasure Island</h1>
+    <p>Welcome to Treasure Island. Your mission is to find the treasure!</p>
+    <div id="game-output" class="output"></div>
+    <py-script>
+def play_game():
+    import js
+    game_output = js.document.getElementById("game-output")
+    
+    # Print ASCII art
+    game_output.innerHTML = r'''
+    ____________________________________________________________________
+    / \-----     ---------  -----------     -------------- ------    ----\
+    \_/__________________________________________________________________/
+    |~ ~~ ~~~ ~ ~ ~~~ ~ _____.----------._ ~~~  ~~~~ ~~   ~~  ~~~~~ ~~~~|
+    |  _   ~~ ~~ __,---'_       "         `. ~~~ _,--.  ~~~~ __,---.  ~~|
+    | | \___ ~~ /      ( )   "          "   `-.,' (') \~~ ~ (  / _\ \~~ |
+    |  \    \__/_   __(( _)_      (    "   "     (_\_) \___~ `-.___,'  ~|
+    |~~ \     (  )_(__)_|( ))  "   ))          "   |    "  \ ~~ ~~~ _ ~~|
+    |  ~ \__ (( _( (  ))  ) _)    ((     \\//    " |   "    \_____,' | ~|
+    |~~ ~   \  ( ))(_)(_)_)|  "    ))    //\\ " __,---._  "  "   "  /~~~|
+    |    ~~~ |(_ _)| | |   |   "  (   "      ,-'~~~ ~~~ `-.   ___  /~ ~ |
+    | ~~     |  |  |   |   _,--- ,--. _  "  (~~  ~~~~  ~~~ ) /___\ \~~ ~|
+    |  ~ ~~ /   |      _,----._,'`--'\.`-._  `._~~_~__~_,-'  |H__|  \ ~~|
+    |~~    / "     _,-' / `\ ,' / _'  \`.---.._          __        " \~ |
+    | ~~~ / /   .-' , / ' _,'_  -  _ '- _`._ `.`-._    _/- `--.   " " \~|
+    |  ~ / / _-- `---,~.-' __   --  _,---.  `-._   _,-'- / ` \ \_   " |~|
+    | ~ | | -- _    /~/  `-_- _  _,' '  \ \_`-._,-'  / --   \  - \_   / |
+    |~~ | \ -      /~~| "     ,-'_ /-  `_ ._`._`-...._____...._,--'  /~~|
+    | ~~\  \_ /   /~~/    ___  `---  ---  - - ' ,--.     ___        |~ ~|
+    |~   \      ,'~~|  " (o o)   "         " " |~~~ \_,-' ~ `.     ,'~~ |
+    | ~~ ~|__,-'~~~~~\    \"/      "  "   "    /~ ~~   O ~ ~~`-.__/~ ~~~|
+    |~~~ ~~~  ~~~~~~~~`.______________________/ ~~~    |   ~~~ ~~ ~ ~~~~|
+    |____~jrei~__~_______~~_~____~~_____~~___~_~~___~\_|_/ ~_____~___~__|
+    / \----- ----- ------------  ------- ----- -------  --------  -------\
+    \_/__________________________________________________________________/
+    '''
+    
+    # First choice
+    choice01 = js.prompt("You're at a cross road. Where do you want to go? Type 'Left' or 'Right'")
+    if choice01.lower() == "right":
+        game_output.innerHTML += "<p>The bandit mugged you and killed you. GAME OVER.</p>"
+        return
+    else:
+        # Second choice
+        choice02 = js.prompt("There is a lake ahead!! Do you want to wait or swim the lake? Type 'wait' or 'swim'")
+        if choice02.lower() == "swim":
+            game_output.innerHTML += "<p>Game over. You were eaten by the piranhas.</p>"
+            return
+        else:
+            # Third choice
+            choice03 = js.prompt("You arrive at the island unharmed. There is a cave with 3 doors. One red, one yellow and one blue. Which colour do you choose? Type 'red', 'blue', or 'yellow'")
+            if choice03.lower() == "red":
+                game_output.innerHTML += "<p>The room was filled with lava. You died by melting!</p>"
+            elif choice03.lower() == "yellow":
+                game_output.innerHTML += "<p>YAY!!! YOU WIN. THE TREASURE IS YOURS :)</p>"
+            elif choice03.lower() == "blue":
+                game_output.innerHTML += "<p>A samurai was in the room. He cuts your head off and you died :(</p>"
+            else:
+                game_output.innerHTML += "<p>Game Over. Try again.</p>"
+
+play_game()
+    </py-script>
+</body>
+</html>
